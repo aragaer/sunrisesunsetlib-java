@@ -414,10 +414,8 @@ public class SolarEventCalculator {
         BigDecimal localTime = localTimeParam.multiply(BigDecimal.valueOf(hour_ms)).setScale(0, RoundingMode.HALF_EVEN);
         result += localTime.longValue();
 
-        long seconds = result % minute_ms;
+        long seconds = (result + minute_ms / 2) % minute_ms;
         result -= seconds;
-        if (seconds * 2 > minute_ms)
-            result += minute_ms;
         result -= date.getTimeZone().getOffset(result);
 
         return result;
