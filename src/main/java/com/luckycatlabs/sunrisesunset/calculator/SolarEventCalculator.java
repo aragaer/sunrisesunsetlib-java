@@ -60,7 +60,20 @@ public class SolarEventCalculator {
 
     /**
      * Computes the sunrise time for the given zenith at the given date.
-     * 
+     *
+     * @param solarZenith
+     *            <code>Zenith</code> enum corresponding to the type of sunrise to compute.
+     * @param date
+     *            <code>Calendar</code> object representing the date to compute the sunrise for.
+     * @return the sunrise time, in milliseconds since Epoch.
+     */
+    public long computeSunrise(Zenith solarZenith, Calendar date) {
+        return getLocalTimeInMillis(computeSolarEventTime(solarZenith, date, true), date);
+    }
+
+    /**
+     * Computes the sunrise time for the given zenith at the given date.
+     *
      * @param solarZenith
      *            <code>Zenith</code> enum corresponding to the type of sunrise to compute.
      * @param date
@@ -83,6 +96,19 @@ public class SolarEventCalculator {
      */
     public Calendar computeSunriseCalendar(Zenith solarZenith, Calendar date) {
         return getLocalTimeAsCalendar(computeSolarEventTime(solarZenith, date, true), date);
+    }
+
+    /**
+     * Computes the sunset time for the given zenith at the given date.
+     *
+     * @param solarZenith
+     *            <code>Zenith</code> enum corresponding to the type of sunset to compute.
+     * @param date
+     *            <code>Calendar</code> object representing the date to compute the sunset for.
+     * @return the sunset time, in milliseconds since Epoch.
+     */
+    public long computeSunset(Zenith solarZenith, Calendar date) {
+        return getLocalTimeInMillis(computeSolarEventTime(solarZenith, date, false), date);
     }
 
     /**
@@ -365,6 +391,38 @@ public class SolarEventCalculator {
 
         return resultTime;
     }
+
+    private final long minute_ms = 60 * 1000; // Number of milliseconds in 1 minute
+    private final long hour_ms = 60 * minute_ms; // Number of milliseconds in one hour
+    private final long day_ms = 24 * hour_ms; // Number of milliseconds in one day
+    /**
+     * Returns the local rise/set time as number of milliseconds since Epoch
+     *
+     * @param localTimeParam
+     *            <code>BigDecimal</code> representation of the local rise/set time.
+     * @return number of milliseconds since Epoch
+     */
+    protected long getLocalTimeInMillis(BigDecimal localTimeParam, Calendar date) {
+        if (localTimeParam == null) {
+            return 0;
+        }
+
+        long result = date.getTimeInMillis();
+        result += date.getTimeZone().getOffset(result);
+        result -= result % day_ms;
+
+        BigDecimal localTime = localTimeParam.multiply(BigDecimal.valueOf(hour_ms)).setScale(0, RoundingMode.HALF_EVEN);
+        result += localTime.longValue();
+
+        long seconds = result % minute_ms;
+        result -= seconds;
+        if (seconds * 2 > minute_ms)
+            result += minute_ms;
+        result -= date.getTimeZone().getOffset(result);
+
+        return result;
+    }
+
 
     /** ******* UTILITY METHODS (Should probably go somewhere else. ***************** */
 

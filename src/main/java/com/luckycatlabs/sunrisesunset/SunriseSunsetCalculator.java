@@ -61,12 +61,23 @@ public class SunriseSunsetCalculator {
 
     /**
      * Returns the astronomical (108deg) sunrise for the given date.
+     *
+     * @param date
+     *            <code>Calendar</code> object containing the date to compute the astronomical sunrise for.
+     * @return the astronomical sunrise time in milliseconds since Epoch.
+     */
+    public long getAstronomicalSunriseForDate(Calendar date) {
+        return calculator.computeSunrise(Zenith.ASTRONOMICAL, date);
+    }
+
+    /**
+     * Returns the astronomical (108deg) sunrise for the given date.
      * 
      * @param date
      *            <code>Calendar</code> object containing the date to compute the astronomical sunrise for.
      * @return the astronomical sunrise time in HH:MM (24-hour clock) form.
      */
-    public String getAstronomicalSunriseForDate(Calendar date) {
+    public String getAstronomicalSunriseStringForDate(Calendar date) {
         return calculator.computeSunriseTime(Zenith.ASTRONOMICAL, date);
     }
 
@@ -83,12 +94,23 @@ public class SunriseSunsetCalculator {
 
     /**
      * Returns the astronomical (108deg) sunset for the given date.
+     *
+     * @param date
+     *            <code>Calendar</code> object containing the date to compute the astronomical sunset for.
+     * @return the astronomical sunset time in milliseconds since Epoch.
+     */
+    public long getAstronomicalSunsetForDate(Calendar date) {
+        return calculator.computeSunset(Zenith.ASTRONOMICAL, date);
+    }
+
+    /**
+     * Returns the astronomical (108deg) sunset for the given date.
      * 
      * @param date
      *            <code>Calendar</code> object containing the date to compute the astronomical sunset for.
      * @return the astronomical sunset time in HH:MM (24-hour clock) form.
      */
-    public String getAstronomicalSunsetForDate(Calendar date) {
+    public String getAstronomicalSunsetStringForDate(Calendar date) {
         return calculator.computeSunsetTime(Zenith.ASTRONOMICAL, date);
     }
 
@@ -105,12 +127,23 @@ public class SunriseSunsetCalculator {
 
     /**
      * Returns the nautical (102deg) sunrise for the given date.
+     *
+     * @param date
+     *            <code>Calendar</code> object containing the date to compute the nautical sunrise for.
+     * @return the nautical sunrise time in milliseconds sinec Epoch
+     */
+    public long getNauticalSunriseForDate(Calendar date) {
+        return calculator.computeSunrise(Zenith.NAUTICAL, date);
+    }
+
+    /**
+     * Returns the nautical (102deg) sunrise for the given date.
      * 
      * @param date
      *            <code>Calendar</code> object containing the date to compute the nautical sunrise for.
      * @return the nautical sunrise time in HH:MM (24-hour clock) form.
      */
-    public String getNauticalSunriseForDate(Calendar date) {
+    public String getNauticalSunriseStringForDate(Calendar date) {
         return calculator.computeSunriseTime(Zenith.NAUTICAL, date);
     }
 
@@ -127,12 +160,23 @@ public class SunriseSunsetCalculator {
 
     /**
      * Returns the nautical (102deg) sunset for the given date.
+     *
+     * @param date
+     *            <code>Calendar</code> object containing the date to compute the nautical sunset for.
+     * @return the nautical sunset time in milliseconds since Epoch
+     */
+    public long getNauticalSunsetForDate(Calendar date) {
+        return calculator.computeSunset(Zenith.NAUTICAL, date);
+    }
+
+    /**
+     * Returns the nautical (102deg) sunset for the given date.
      * 
      * @param date
      *            <code>Calendar</code> object containing the date to compute the nautical sunset for.
      * @return the nautical sunset time in HH:MM (24-hour clock) form.
      */
-    public String getNauticalSunsetForDate(Calendar date) {
+    public String getNauticalSunsetStringForDate(Calendar date) {
         return calculator.computeSunsetTime(Zenith.NAUTICAL, date);
     }
 
@@ -149,12 +193,23 @@ public class SunriseSunsetCalculator {
 
     /**
      * Returns the civil sunrise (twilight, 96deg) for the given date.
+     *
+     * @param date
+     *            <code>Calendar</code> object containing the date to compute the civil sunrise for.
+     * @return the civil sunrise time in milliseconds since Epoch
+     */
+    public long getCivilSunriseForDate(Calendar date) {
+        return calculator.computeSunrise(Zenith.CIVIL, date);
+    }
+
+    /**
+     * Returns the civil sunrise (twilight, 96deg) for the given date.
      * 
      * @param date
      *            <code>Calendar</code> object containing the date to compute the civil sunrise for.
      * @return the civil sunrise time in HH:MM (24-hour clock) form.
      */
-    public String getCivilSunriseForDate(Calendar date) {
+    public String getCivilSunriseStringForDate(Calendar date) {
         return calculator.computeSunriseTime(Zenith.CIVIL, date);
     }
 
@@ -171,12 +226,23 @@ public class SunriseSunsetCalculator {
 
     /**
      * Returns the civil sunset (twilight, 96deg) for the given date.
+     *
+     * @param date
+     *            <code>Calendar</code> object containing the date to compute the civil sunset for.
+     * @return the civil sunset time in milliseconds since Epoch
+     */
+    public long getCivilSunsetForDate(Calendar date) {
+        return calculator.computeSunset(Zenith.CIVIL, date);
+    }
+
+    /**
+     * Returns the civil sunset (twilight, 96deg) for the given date.
      * 
      * @param date
      *            <code>Calendar</code> object containing the date to compute the civil sunset for.
      * @return the civil sunset time in HH:MM (24-hour clock) form.
      */
-    public String getCivilSunsetForDate(Calendar date) {
+    public String getCivilSunsetStringForDate(Calendar date) {
         return calculator.computeSunsetTime(Zenith.CIVIL, date);
     }
 
@@ -193,12 +259,23 @@ public class SunriseSunsetCalculator {
 
     /**
      * Returns the official sunrise (90deg 50', 90.8333deg) for the given date.
+     *
+     * @param date
+     *            <code>Calendar</code> object containing the date to compute the official sunrise for.
+     * @return the official sunrise time in milliseconds since Epoch
+     */
+    public long getOfficialSunriseForDate(Calendar date) {
+        return calculator.computeSunrise(Zenith.OFFICIAL, date);
+    }
+
+    /**
+     * Returns the official sunrise (90deg 50', 90.8333deg) for the given date.
      * 
      * @param date
      *            <code>Calendar</code> object containing the date to compute the official sunrise for.
      * @return the official sunrise time in HH:MM (24-hour clock) form.
      */
-    public String getOfficialSunriseForDate(Calendar date) {
+    public String getOfficialSunriseStringForDate(Calendar date) {
         return calculator.computeSunriseTime(Zenith.OFFICIAL, date);
     }
 
@@ -215,12 +292,23 @@ public class SunriseSunsetCalculator {
 
     /**
      * Returns the official sunrise (90deg 50', 90.8333deg) for the given date.
+     *
+     * @param date
+     *            <code>Calendar</code> object containing the date to compute the official sunset for.
+     * @return the official sunset time in milliseonds since Epoch
+     */
+    public long getOfficialSunsetForDate(Calendar date) {
+        return calculator.computeSunset(Zenith.OFFICIAL, date);
+    }
+
+    /**
+     * Returns the official sunrise (90deg 50', 90.8333deg) for the given date.
      * 
      * @param date
      *            <code>Calendar</code> object containing the date to compute the official sunset for.
      * @return the official sunset time in HH:MM (24-hour clock) form.
      */
-    public String getOfficialSunsetForDate(Calendar date) {
+    public String getOfficialSunsetStringForDate(Calendar date) {
         return calculator.computeSunsetTime(Zenith.OFFICIAL, date);
     }
 
