@@ -63,6 +63,21 @@ public class SolarEventCalculator {
      *
      * @param solarZenith
      *            <code>Zenith</code> enum corresponding to the type of sunrise to compute.
+     * @param time
+     *            time in milliseconds since the Epoch.
+     * @return the sunrise time, in milliseconds since Epoch.
+     */
+    public long computeSunrise(Zenith solarZenith, long time) {
+	Calendar date = Calendar.getInstance();
+	date.setTimeInMillis(time);
+        return getLocalTimeInMillis(computeSolarEventTime(solarZenith, date, true), date);
+    }
+
+    /**
+     * Computes the sunrise time for the given zenith at the given date.
+     *
+     * @param solarZenith
+     *            <code>Zenith</code> enum corresponding to the type of sunrise to compute.
      * @param date
      *            <code>Calendar</code> object representing the date to compute the sunrise for.
      * @return the sunrise time, in milliseconds since Epoch.
@@ -96,6 +111,21 @@ public class SolarEventCalculator {
      */
     public Calendar computeSunriseCalendar(Zenith solarZenith, Calendar date) {
         return getLocalTimeAsCalendar(computeSolarEventTime(solarZenith, date, true), date);
+    }
+
+    /**
+     * Computes the sunset time for the given zenith at the given date.
+     *
+     * @param solarZenith
+     *            <code>Zenith</code> enum corresponding to the type of sunset to compute.
+     * @param time
+     *            time in milliseconds since the Epoch.
+     * @return the sunset time, in milliseconds since Epoch.
+     */
+    public long computeSunset(Zenith solarZenith, long time) {
+	Calendar date = Calendar.getInstance();
+	date.setTimeInMillis(time);
+        return getLocalTimeInMillis(computeSolarEventTime(solarZenith, date, false), date);
     }
 
     /**
